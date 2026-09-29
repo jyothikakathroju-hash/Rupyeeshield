@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RupeeShield | AI-Powered Cyber Risk Quantification</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon"></div>
+            RupeeShield
+        </div>
+        <ul class="nav-menu" id="main-nav">
+            <li class="nav-item active" data-target="view-dashboard">Executive Dashboard</li>
+            <li class="nav-item" data-target="view-optimization">Investment Optimizer</li>
+            <li class="nav-item" data-target="view-technical">Technical Risk View</li>
+            <li class="nav-item" data-target="view-compliance">Compliance Mapping</li>
+            <li class="nav-item" data-target="view-copilot">AI Copilot</li>
+        </ul>
+        <div class="data-sources">
+            <div class="data-sources-title">Active Integrations</div>
+            <div class="source-tag">Vulnerability Mgmt</div>
+            <div class="source-tag">SIEM</div>
+            <div class="source-tag">IAM</div>
+            <div class="source-tag">EDR & CSPM</div>
+            <div class="source-tag">Asset Inventory</div>
+            <div class="source-tag">Threat Intel</div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="org-info">
+                <h2>NovaBank Industries</h2>
+                <span class="badge">Production Env</span>
+            </div>
+            <div class="user-actions">
+                <span class="risk-score-badge">Enterprise Risk Score: <strong
+                        id="header-risk-score">72/100</strong></span>
+                <span class="badge" style="background-color: var(--accent-blue-dim); color: var(--accent-blue);">Board
+                    Mode</span>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+
+            <!-- VIEW: DASHBOARD -->
+            <div id="view-dashboard" class="view-section active">
+                <div class="hero-section">
+                    <div class="financial-hero">
+                        <div class="label">Expected Annual Loss (EAL)</div>
+                        <div class="value" id="total-exposure">₹4.10 Cr</div>
+                        <div class="range">
+                            <span>95% VaR: <span id="var-exposure" class="risk-critical-text">₹10.30 Cr</span></span>
+                            <div class="range-bar" style="margin-left: 1rem;">
+                                <div class="range-bar-fill" id="eal-range-fill"></div>
+                            </div>
+                            <span class="badge">MODELED</span>
+                        </div>
+                    </div>
+                    <div class="risk-trend">
+                        <div class="label">30-Day Risk Trend</div>
+                        <div class="trend-value critical">↑ +12.4%</div>
+                        <div class="trend-subtitle">Due to 3 new unpatched zero-days in API Gateway</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-title">Downtime Cost Risk</div>
+                        <div class="kpi-value warning" id="risk-downtime">₹1.20 Cr</div>
+                        <div class="card-subtitle">Impact on core operations</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Data Breach & Penalties</div>
+                        <div class="kpi-value bad" id="risk-breach">₹2.10 Cr</div>
+                        <div class="card-subtitle">Regulatory & privacy fines</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Reputational Impact</div>
+                        <div class="kpi-value neutral" id="risk-reputation">₹0.80 Cr</div>
+                        <div class="card-subtitle">Customer churn estimation</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid two-cols mt-2">
+                    <div class="card">
+                        <div class="card-title">Top Risk Contributors (Drivers)</div>
+                        <div class="card-subtitle">Business Asset / Threat Scenario</div>
+                        <div class="driver-list" id="drivers-container"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Scenario Comparison</div>
+                        <div class="chart-container" id="scenario-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: OPTIMIZATION & SIMULATION -->
+            <div id="view-optimization" class="view-section">
+                <div class="card mb-2">
+                    <div class="card-title">Security Investment Optimization</div>
+                    <div class="card-subtitle">Set your budget to see the AI-recommended optimal control portfolio.
+                    </div>
+
+                    <div class="budget-slider-container">
+                        <div class="slider-header">
+                            <span>Available Security Budget</span>
+                            <span class="budget-value" id="budget-display">₹50 L</span>
+                        </div>
+                        <input type="range" id="budget-slider" min="0" max="200" step="5" value="50"
+                            class="styled-slider">
+
+                        <div class="delay-slider-container mt-2">
+                            <div class="slider-header">
+                                <span>Remediation Delay (Days) - Adds ₹0.04 Cr / day penalty risk</span>
+                                <span class="budget-value" id="delay-display">0 Days</span>
+                            </div>
+                            <input type="range" id="delay-slider" min="0" max="60" step="1" value="0"
+                                class="styled-slider warning-slider">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-title">Recommended Investment</div>
+                        <div class="kpi-value neutral" id="opt-cost">₹0 L</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Avoided Loss</div>
+                        <div class="kpi-value good" id="opt-avoided">₹0 L</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">ROSI (Return on Investment)</div>
+                        <div class="kpi-value good" id="opt-rosi">--</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid two-cols mt-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Recommended Mitigations</div>
+                                <div class="card-subtitle">Controls selected to maximize risk reduction within budget.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-list" id="controls-container">
+                            <!-- JS injects controls here -->
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Investment vs Risk Reduction</div>
+                        <div class="card-subtitle">Diminishing returns curve</div>
+                        <div class="diminishing-chart" id="roi-curve">
+                            <!-- JS injects SVG curve here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: TECHNICAL RISK -->
+            <div id="view-technical" class="view-section">
+                <div class="card">
+                    <div class="card-title">Technical Risk Drill-Down</div>
+                    <div class="card-subtitle">Telemetry to Financial Exposure Mapping</div>
+                    <div class="table-container mt-2">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Finding (Telemetry)</th>
+                                    <th>Asset / Service</th>
+                                    <th>Threat Scenario</th>
+                                    <th>Likelihood</th>
+                                    <th>Impact (₹)</th>
+                                    <th>Exposure (₹)</th>
+                                    <th>Recommended Control</th>
+                                </tr>
+                            </thead>
+                            <tbody id="technical-table-body">
+                                <!-- JS injects rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: COMPLIANCE -->
+            <div id="view-compliance" class="view-section">
+                <div class="card">
+                    <div class="card-title">Compliance & Framework Mapping</div>
+                    <div class="card-subtitle">Financial exposure tied to compliance weaknesses</div>
+                    <div class="table-container mt-2">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Framework</th>
+                                    <th>Requirement</th>
+                                    <th>Status</th>
+                                    <th>Weakness</th>
+                                    <th>Affected Asset</th>
+                                    <th>Associated Exposure</th>
+                                </tr>
+                            </thead>
+                            <tbody id="compliance-table-body">
+                                <!-- JS injects rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: COPILOT -->
+            <div id="view-copilot" class="view-section">
+                <div class="card copilot-container">
+                    <div class="copilot-header">
+                        <div class="logo-icon"></div>
+                        <div>
+                            <div class="card-title">RupeeShield AI Copilot</div>
+                            <div class="card-subtitle">Ask questions in natural language about your financial cyber
+                                risk.</div>
+                        </div>
+                    </div>
+                    <div class="chat-window" id="chat-window">
+                        <div class="chat-msg ai-msg">
+                            Hello! I can help you analyze your cyber risk. Try asking:<br>
+                            - "What is our highest financial cyber risk today?"<br>
+                            - "What happens if MFA is implemented across all privileged accounts?"<br>
+                            - "What happens if remediation is delayed by 30 days?"
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Ask AI Copilot..." autocomplete="off">
+                        <button id="chat-send">Send</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
